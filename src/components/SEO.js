@@ -114,7 +114,7 @@ const SEO = props => {
       dateModified: postNode.parent.mtime,
       description,
       headline: title,
-      inLanguage: 'en',
+      inLanguage: 'es',
       url: URL,
       name: title,
       image: {
@@ -148,7 +148,7 @@ const SEO = props => {
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta name="image" content={image} />
-      <meta name="gatsby-starter" content="Gatsby Starter Minimal Blog" />
+      <meta name="fernando-valdes" content="Fernando Valdes Blog" />
       <meta property="og:locale" content={config.ogLanguage} />
       <meta property="og:site_name" content={config.ogSiteName ? config.ogSiteName : ''} />
       <meta property="og:url" content={URL} />
