@@ -55,15 +55,14 @@ const IndexPage = ({
   <Layout>
     <Wrapper>
       <Hero>
-        <h1>Hola.</h1>
+        <h1>Hola hola!</h1>
         <p>
           Soy Fernando Valdes, desarrollador java y node desde hace algunos años. Hoy me contratan como arquitecto de soluciones.
         </p>
         <br/>
         <p>
-          Aquí vas a poder encontrar artículos que escribí sobre desarrollo personal y profesional orientado a la construcción de aplicaciones y servicios.
+          Acá vas a poder encontrar artículos que escribí sobre desarrollo personal y profesional orientado a la construcción de aplicaciones y servicios.
         </p>
-        
         <SocialDiv>
           <SocialIcon>
             <a href="https://www.linkedin.com/in/fervaldes/">
@@ -96,7 +95,7 @@ const IndexPage = ({
         </Link>
       </Hero>
       <Content>
-        <SectionTitle>Latest stories</SectionTitle>
+        <SectionTitle>Últimas historias</SectionTitle>
         {posts.map(post => (
           <Article
             title={post.frontmatter.title}

@@ -1,0 +1,107 @@
+---
+date: "2019-09-12"
+title: "API REST ¿API qué?"
+categories:
+  - api
+  - development
+  - architecture
+---
+
+### APIs que no restan. Lo que tenemos que saber para entender de REST.
+
+![API REST](./1.png "API REST")
+
+
+Escuchaste en una conversación que es necesario construir una API REST o hay que integrarse con una y no tenes idea que significa. Quiero explicarle los fundamentos a las personas, no necesariamente, que no estén interesadas en la programación, pero necesitan abordar este concepto ya que esta herramienta es parte fundamental de la construcción de aplicaciones e integraciones.
+
+Primero tenemos que saber qué es API: Application Programming Interface. Interfaces de servicios para los mortales.
+
+Pensá por un segundo en interfaces gráficas habituales (sistemas operativos, sitios web) que están destinadas a ser consumidas por usuarios humanos. Para una API los usuarios son otras aplicaciones y/o servicios. Es como un contrato, donde se pueden ejecutar acciones con datos de entrada y salida predefinidos. Por ejemplo, te voy a buscar y devolver un listado de cuentas si me das el identificador del dueño de esas cuentas.
+
+### Hagamos una introducción básica a los actores del artículo
+
+**REST:** nuestro objetivo del artículo: No es más que un concepto de diseño. Es parte de una arquitectura para construir una aplicación. Un conjunto de restricciones y prácticas que se aplican a las APIs.
+
+**Cliente:** Si no tenemos un usuario consumidor de la API (ya sea una app u otra API) dejaría de tener sentido la construcción de nuestra API REST.
+
+### Los 6 principios del concepto REST
+
+**1. Cliente-Servidor:** Es un interfaz expuesta en un servidor y va a ser consumida por clientes (apps, servicios).
+
+**2. Sin estado:** Cada request(solicitud) del cliente a la API debe contener todo la info necesaria para comprender la solicitud. La API no almacena ningún contexto ni información de sesión.
+
+**3. Cacheable:** Derecho de que el cliente pueda reutilizar datos de la respuesta para solicitudes equivalentes posteriores.
+
+**4. Interface Uniforme:** Son restricciones arquitectónicas que sirven como guías: Identificación de recursos, manipulación de recursos, mensajes autodescriptivos e hipermedia.
+
+What? No entendí nada… Tranquilo… más adelante lo comprenderemos.
+
+**5. Capas:** Restringe el comportamiento de los componentes de modo que cada componente no pueda “ver” el de otros. Quiere decir que la API tenga foco solo en su comportamiento y no influya en otro componente de la arquitectura.
+
+> Hoy en día escuchamos de RESTful API. La interpretación Wikipedia que te puedo dar es que es una API que implementa completamente todos estos principios mencionados. Esto quiere decir que si nuestra API REST implementa cuatro de los cinco principios obligatorios no se la puede considerar RESTful.
+
+### Podemos comprender REST en función de niveles de complejidad.
+
+Lo separé en cuatro niveles que aumentan su dificultad de manera progresiva.
+
+##### Nivel 1: Utilizando HTTP.
+
+Técnicamente los servicios REST pueden hacer uso de cualquier otro protocolo, siempre y cuando se ajusten a las restricciones. Pero pensemos que REST comúnmente van a ser servicios web que utilizan el protocolo HTTP.
+
+**Preguntas claves:** ¿HTTP se adapta mejor a mi proyecto? ¿Cuáles son las alternativas? (Ej: RPC)
+
+##### Nivel 2: Utilizando recursos.
+
+Todos los artículos que hablan sobre esto son abstractos y es porque el concepto de un recurso REST es abstracto. Básicamente es “cualquier cosa a la que se acceda desde la URL que nosotros proporcionamos”. Entonces, el JSON de respuesta sería una representación del recurso.
+
+La URL no es un recurso, es una etiqueta que identifica el recurso. Entonces podríamos decir que URL es el nombre del recurso.
+
+**Preguntas clave:** ¿Entiendo completamente el concepto del recurso? ¿Tengo que tener en cuenta la forma en que se implementa el recurso? Esta pregunta solo valdría la pena si la siguiente pregunta tienen una respuesta positiva. ¿Yo voy a desarrollar la implementación?
+
+##### Nivel 3: Utilizando verbos HTTP
+
+Los verbos HTTP permiten desarrollar cualquier tipo de API que tenga todas las operaciones CRUD posibles (create/crear, retrieve/recuperar, update/actualizar, delete/eliminar). Esta pauta sugiere que usemos un método HTTP específico en un tipo específico de acción realizada en el servidor de nuestra API.
+
+    HTTP GET → Recuperación de la representación del recurso
+
+    HTTP POST → Creación de recurso
+
+    HTTP PUT → Actualización de recurso existente
+
+    HTTP DELETE → Eliminación de recurso
+
+    HTTP PATCH → Actualización parcial del recurso
+
+**Preguntas claves:** ¿Puedo solo aceptar solicitudes GET? ¿Nuestros clientes utilizarán todos los verbos y utilizarán mi API en consecuencia?
+
+##### Nivel 3: Utilizando controles Hypermedia
+
+En cada respuesta de la API debemos incluir enlaces que expongan los siguientes pasos que el cliente consumidor puede tomar. Por ejemplo la API de Facebook que devuelve una simple publicación en el “recurso” que se encuentra en el cuerpo de la respuesta tiene enlaces adjuntos que permiten ver qué acciones están disponibles para esa publicaciones, acciones como dar me gusta o compartirla.
+
+**Las preguntas claves:** ¿Cuándo necesito esto? ¿Mi API va a ser usada internamente y los desarrolladores de diferentes aplicaciones pueden comunicarse fácilmente, y exponer enlaces podría no ser necesario ya que aumenta el tamaño de la carga útil, la complejidad del código y el tiempo de desarrollo? ¿Se pueden exponer esos enlaces a través de la documentación de la API?
+
+***
+
+##### ¿Es bueno este concepto para vos como programador?
+
+Obviamente!!! Si respetas los conceptos REST, seguro pero muy seguro, vas a construir una API saludable y consistente. Vas a exponer una API como la mayoría de tus clientes esperan.
+
+##### ¿Es bueno este concepto para tu aplicación?
+
+En realidad tu aplicación debería definir tu arquitectura. No deberías permitir que lo que haga la mayoría, o lo que más se utiliza en tu empresa o cualquier arquitectura que parezca copada defina tu aplicación.
+
+##### ¿Cómo sé que REST es adecuado para mi caso?
+
+Esta si es una buena pregunta. REST es ideal para servicios que deben desarrollarse y mantenerse de forma independiente. Cuando se realiza correctamente mejora la capacidad de evolución y escalabilidad a largo plazo a costa del rendimiento y la complejidad añadida.
+
+Un ejemplo de esto puede ser la API de Paypal, la enorme cantidad de peticiones que debe tener por segundo. Esta API seguramente priorice crecer que dejar sin servicio consumidores.
+
+> Espero llegar a un acuerdo con vos en que REST es el más adecuado para los casos en los que se espera que una API evolucione con el tiempo y el cliente no tienen ningún control sobre esta.
+
+### El resultado
+
+Después de este corto pero conciso articulo espero conseguir que entiendas cuando colegas hablen de API REST y puedas participar en el armado de alto nivel de la arquitectura de las aplicaciones.
+
+Para construir una API REST exitosa, debemos comprender completamente dos cosas: los requisitos del proyecto y las restricciones de la arquitectura, esta última debe ajustarse a la primera.
+
+Si entendemos los principios esenciales de REST y se adaptan a nuestro proyecto, entonces es una apuesta segura meterse de lleno en REST.
