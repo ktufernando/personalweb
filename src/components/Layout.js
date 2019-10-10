@@ -184,6 +184,15 @@ const GlobalStyle = createGlobalStyle`
   [hidden] {
     display: none !important;
   }
+  ul {
+    margin-top: 0;
+    margin-bottom: 1.6rem;
+    padding: 0;
+  }
+  ul li {
+    display: block;
+    margin: 0 0 .5em 1.3em;
+  }
 `
 
 const Footer = styled.footer`
