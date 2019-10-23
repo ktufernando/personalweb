@@ -1,4 +1,6 @@
-# Gatsby Starter: Minimal Blog
+# Personal Web developed with Gatsby. [FernandoValdes.me](https://ktufernando.github.io/)
+
+## Gatsby Starter: Minimal Blog
 
 Typography driven, focus on the content & minimal style. Powered by MDX.
 

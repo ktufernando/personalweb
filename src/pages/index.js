@@ -57,11 +57,15 @@ const IndexPage = ({
       <Hero>
         <h1>Hola hola!</h1>
         <p>
-          Soy Fernando Valdes, desarrollador java y node desde hace algunos años. Hoy me contratan como arquitecto de soluciones.
+          Soy Fernando Valdes, desarrollador java y node desde hace 13 años. Hoy me contratan como consultor y arquitecto de soluciones.
         </p>
         <br/>
         <p>
-          Acá vas a poder encontrar artículos que escribí sobre desarrollo personal y profesional orientado a la construcción de aplicaciones y servicios.
+          Acá vas a poder encontrar artículos que escribí sobre desarrollo personal y profesional orientado al desarrollo de aplicaciones y servicios.
+        </p>
+        <br/>
+        <p>
+          Suelo dar worshops sobre desarrollo con frameworks de java y de NodeJs, como asi también de herramientas de DevOps y AWS. Enviame whatsapp o mail si te gustaría participar. Es gracias!
         </p>
         <ul>
           <li>
