@@ -30,10 +30,10 @@ const Hero = styled.div`
   }
 
   p {
-    font-size: 1.68rem;
+    font-size: 1.55rem;
     margin-top: -1rem;
     @media (max-width: ${props => props.theme.breakpoints.tablet}) {
-      font-size: 1.45rem;
+      font-size: 1.40rem;
     }
     @media (max-width: ${props => props.theme.breakpoints.phone}) {
       font-size: 1.25rem;
@@ -59,13 +59,11 @@ const IndexPage = ({
         <p>
           Soy Fernando Valdes, desarrollador java y node desde hace 13 años. Hoy me contratan como consultor y arquitecto de soluciones.
         </p>
-        <br/>
         <p>
-          Acá vas a poder encontrar artículos que escribí sobre desarrollo personal y profesional orientado al desarrollo de aplicaciones y servicios.
+          Acá vas a encontrar artículos que seguro te ayudarán en tú desarrollo profesional como developer, arquitecto y lider.
         </p>
-        <br/>
         <p>
-          Suelo dar worshops sobre desarrollo con frameworks de java y de NodeJs, como asi también de herramientas de DevOps y AWS. Enviame whatsapp o mail si te gustaría participar. Es gracias!
+          Suelo dar worshops GRATIS de desarrollo, DevOps y AWS. Enviame whatsapp o mail si te gustaría participar.
         </p>
         <ul>
           <li>
