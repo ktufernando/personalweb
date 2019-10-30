@@ -1,0 +1,139 @@
+---
+date: "2019-10-30"
+title: "Consideraciones antes de implementar CI / CD"
+categories:
+  - devops 
+  - ci/cd
+  - development
+---
+
+### Que tenemos que tener en cuenta a medida que avanzamos hacia la Integración continua / Entrega continua
+
+![Consideraciones antes de implementar CI / CD](./1.jpg "Consideraciones antes de implementar CI / CD")
+
+Hace un tiempo, un ex-compañero de equipo, me escribió para hacerme una pregunta:
+
+*“Fernando, estoy probando unas herramientas para modernizar la forma en la que trabajamos, implica cambiar bastante muchas cosas. Estas herramientas permiten la integración a un esquema devops. Me parece fundamental modernizar la manera en la que se trabaja con el lenguaje. Mi idea es proponerlo para un proyecto chico, con poco riesgo y como un piloto. ¿Te parece que vale la pena?”*
+
+Antes de empezar, quiero dejarte unos links por si no tenés claro qué es Integración continua (CI) y Entrega continua (CD).
+
+[¿Qué es integración continua? por AWS](https://aws.amazon.com/es/devops/continuous-integration)
+
+[¿Qué es entrega continua? por AWS](https://aws.amazon.com/es/devops/continuous-delivery)
+
+#### CI / CD no es para todos!
+
+Si tus necesidades de implementación son tales que no necesitás o no deseás exponer actualizaciones a tus usuarios de manera continua, entonces no lo hagas. Sí, hay algunas cosas geniales que podés tomar de construir o usar un pipeline de CD, pero si no es adecuado para vos o para tu equipo, entonces tal vez solo quieras aprender sobre esto por ahora. Comprendé lo que cada uno de los proveedores de SaaS existentes puede brindarte en esta temática, luego decidí vos mismo si podés tomar algo de ellos para facilitarte la vida. (Agregue algunos links al final del artículo con los servicios de nube que ofrecen estas herramientas).
+
+> Entonces, ¿qué hago si estoy interesado en seguir con esto?
+
+### Paso 1: Hacé tu tarea
+
+![Paso 1: Hacé tu tarea](./2.jpg "Paso 1: Hacé tu tarea")
+
+Tuve una época que sufría del “síndrome del juguete nuevo” (“¡Wow, esta tecnología es increíble! ¡Lo voy a implementar lo antes posible!”). Sin embargo, uno aprende de los errores, o al menos, debemos aprender de los errores.
+
+**¿Vos sufrís este síndrome?**
+
+Leé sobre el tema. Dedicá tiempo a analizar y comprender no solo esta u otra tecnología, sino las ideas fundamentales detrás de lo que estás considerando.
+
+#### Retrocedamos y pensemos en:
+
+1. ¿Cómo afectará la integración continua los comportamientos y acciones de tu equipo, y su rutina diaria? ¿Es algo que podés manejar?, y si es así, creá un plan de cambio para migrar, documentá lo que esperás de las personas.
+
+2. ¿Qué significaría la entrega continua para tu software (o alguna parte del software)? ¿Tenés suficientes estrategias de rollback para manejar el pipeline? ¿Tenés en consideración la seguridad y calidad? Escribí esto, tus inquietudes y un análisis del gap con lo que tenes actualmente.
+
+3. ¿Tus clientes quieren / necesitan actualizaciones más rápidamente? Algunos sistemas o clientes no quieren que los mates con cambios varias veces por día.
+
+4. ¿Vos y tu(s) equipo(s) sienten que están lo suficientemente capacitados, ​​en cómo afectará la forma en que se hacen las cosas, y no van a terminar en peleas de todos contra todos? Si no es así, ¿qué debés hacer para asegurarte de que todos sepan lo que se espera de cada uno de ellos?
+
+5. ¿Requerís autorizaciones manuales? No todo el mundo está dispuesto a poner el código en producción, a menos que, alguien se asegure que esta todo OK.
+
+6. ¿Elegimos construir nuestro propio pipeline de CD o planeamos utilizar un servicio en la nube existente? Elijas lo que elijas, ¿estate seguro de cómo se utilizan las herramientas? Lo importante, es investigar y buscar comentarios, buenos y malos, sobre las herramientas que estamos a punto de usar.
+
+### Paso 2: Cambio de mentalidad
+
+![Paso 2: Cambio de mentalidad](./3.png "Paso 2: Cambio de mentalidad")
+
+Vas a tener que cambiar tu perspectiva si venís de una estrategia de implementación más lenta.
+
+En escenarios de implementación que requieren más tiempo, a veces se depende de una gran cantidad de intervención manual y/o pruebas para pasar el software de ambiente. Tiene sentido. Si no estás seguro de que todo va a ir bien, tomará más tiempo para permitir que nuestros testers, seguridad y calidad se aseguren y acepten el pasaje a producción. A nadie le gustan los "fueras de servicio".
+
+En una estrategia de implementación de CI / CD, siempre que se pueda, deseamos asegurarnos de que el código se pruebe automáticamente para determinar la calidad, la seguridad y la preparación del cliente.
+
+Sí todavía tenés toques manuales, pero estás tratando de acelerar las cosas. La automatización significa que vas poder ejecutar muchas o todas de tus pruebas durante las diversas fases del ciclo de vida del despliegue de tu software.
+
+Si tenés muchas pruebas manuales en los flujos estándar en tu código, tenés que considerar las herramientas y técnicas que podés utilizar para permitir que tus testers definan pruebas automatizadas para eliminar el retraso de tiempo y las actividades repetitivas de pruebas manuales.
+
+Considerá cómo monitorear tu sistema de manera temprana y cómo pensas responder en diversas situaciones. Vas a pasar de desarrollo a producción mucho más rápido, por lo que debés considerar tus necesidades de monitoreo para asegurarte de que el sistema esté sano y feliz, y cómo responderás si las cosas se ponen mal.
+
+Que tu equipo migre a CI es un cambio mental. Tienen que centrarse menos en grandes cambios y más en pequeños cambios que finalmente se suman a uno más grande.
+
+Debes pensar en cómo afectará su lanzamiento de nuevas funciones, cómo y cuál es lo mínimo que esperas que hagan los ingenieros antes de que la “pequeña porción de código” sea buena (pruebas unitarias, pruebas automatizadas, cambios de documentación, etc.).
+
+Vos con tu equipo tienen que cuadrar cuál es el MVP de cualquier cambio dado antes de que el código se mergee a master. Comprender tempranamente las expectativas en este frente puede marcar la diferencia.
+
+### Paso 3: Aislado y simple
+
+![Paso 3: Aislado y simple](./4.jpg "Paso 3: Aislado y simple")
+
+Involucrá a alguien o algunos en el desarrollo de una aplicación simple, completamente aislada de tu sistema principal (existente), y construí pipeline de CD para esta app.
+
+¿Tiene que ser perfecto? No. Pero tiene que ir desde el inicio de un desarrollado hasta producción. Vas a querer demostrar que puede(n) hacerlo, y la única forma en que es realmente posible es construyéndolo ustedes mismos.
+
+Vos y tu equipo van a aprender mucho de esa experiencia, en particular lo que funciona y lo que no. Con suerte, vas a sacarle jugo en cómo va cambiar tu diseño del ciclo de vida del desarrollo y en tus pipelines.
+
+### Paso 4: Organizado y disciplinado
+
+![Paso 4: Organizado y disciplinado](./5.jpg "Paso 4: Organizado y disciplinado")
+
+Una cosa que me sorprende es la falta de organización en la transición a CI/CD. Te lo digo por propia experiencia en mi actual trabajo. Es fundamental que con tu equipo sean dedicados y disciplinados en la adopción de CI/CD. ¿Estás siguiendo las mejores prácticas y, de ser así, dónde las estás aplicando (más importante… dónde NO)?
+
+Una vez más, ¿cuál es tu análisis de gap para que todos en tu empresa sientan que sus prácticas y herramientas de CI/CD satisfacen sus preocupaciones (cliente, seguridad, rendimiento, calidad, etc.)?
+
+Cada gap debe anotarse como un riesgo aceptable o como un trabajo a completar, tanto en términos de mejora continua de sus procesos / herramientas de implementación, como en la educación, documentación y socialización de CI/CD dentro de su organización.
+
+- ¿Los equipos están realizando las revisiones de código?
+
+- ¿Se realizan pruebas unitarias regularmente?
+
+- ¿Se realizan pruebas automatizadas regularmente?
+
+- Si estás utilizando indicadores de features, ¿se han configurado? ¿Entendés cómo y cuándo se utilizarán para exponer a tus usuarios a una nueva funcionalidad?
+
+- ¿Tienes deudas tecnológicas / anti-patrones en cómo estás haciendo las cosas? Este puede ser un tema delicado en los equipos, pero debe ser enfrentado con la mayor honestidad posible.
+
+La verdadera conclusión aquí es que no podes dejar al azar las comprobaciones manuales como lo haces en estrategias de implementación más duraderas. La calidad y las mejores prácticas son tu mejor aliado en una estrategia de implementación de CI/CD. Ser tan organizado y disciplinado como sea posible es donde eliminás el terror de posibles interrupciones y/o fallas. Estás invirtiendo para asegurarse de encontrar los errores lo antes posible, para evitar que el código incorrecto llegue a visualizarse en el producto.
+
+### Paso 5: Mantenete seguro
+
+![Paso 5: Mantenete seguro](./6.jpg "Paso 5: Mantenete seguro")
+
+Es importante saber que el fracaso está bien, pero solamente si falla con seguridad. Tenes que querer que tus pipelines CI/CD al comienzo fracasen. No querés dejar tu sistema productivo fuera de la red en el proceso.
+
+Al principio, aislá de la mejor manera posible de tu plataforma existente nuevos subsistemas creados con CI/CD. Querés darle a tu(s) equipo(s) la capacidad de aprender y crecer en el espacio de CI/CD antes de que esta parte de software esté lista. No arriesgues tu plataforma antes de que sea probada. Te recomiendo fallar de manera segura a medida que aprendés, permitansén fallar y aprender mientras sucedan junto con su estrategia de implementación existente.
+
+> Espero que te ayude!
+
+### Algunos links de pipelines de CI/CD en la nube.
+
+[AWS](https://aws.amazon.com/codepipeline/)
+
+[Azure](https://azure.microsoft.com/en-us/services/devops/pipelines/)
+
+[Gitlab](https://about.gitlab.com/)
+
+[Bitbucket](https://bitbucket.org/product/features/)
+
+***
+
+Muchas cosas de las que leíste en este artículo ya las sabés. La mayoría de este conocimiento que te compartí ya lo sabés. Sabemos lo que tenemos que hacer, sabemos lo que tenemos que evitar, todo esto ya lo sabemos. El único problema es que no lo ponemos en práctica, por esto es que necesito que te comprometas conmigo, en que si una de las ideas que mencioné resuena en vos, te interesa ponerla en práctica, que te comprometas a que vas a empezar hoy mismo con el paso más pequeño posible, el gesto más mínimo a hacerlo.
+
+Solo pensar en poner en práctica no sirve, tenés que ponerte en práctica para tu crecimiento exponencial.
+
+***
+
+Antes de que te vayas…
+
+¿Encontraste interesante el artículo? ¿Te gustaría que escriba sobre algún tema en particular?
+Escribime o contactame a través de [Medium](https://medium.com/@ktufernando) o [GitHub](https://github.com/ktufernando) o [LinkedIn](https://www.linkedin.com/in/fervaldes/).
