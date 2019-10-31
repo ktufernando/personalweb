@@ -24,7 +24,7 @@ Check your development environment! You'll need [Node.js](https://nodejs.org/en/
 
 - [Check your development environment](https://www.gatsbyjs.org/tutorial/part-zero/)
 
-To copy and install this starter run this command (with "project-name" being the name of your folder you wish to install it in):
+Install and run with this command:
 
 ```
 npm run develop
