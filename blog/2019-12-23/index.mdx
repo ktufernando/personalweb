@@ -1,0 +1,123 @@
+---
+date: "2019-12-23"
+title: "Sacate el miedo de usar .map() .filter() y .reduce()"
+categories:
+  - software development 
+  - programming
+  - javascript
+---
+
+![.map() .filter() y .reduce()](./1.jpg ".map() .filter() y .reduce()")
+
+Todo lo que leía, veía y escuchaba sobre .map(), .filter() y .reduce() sonaba muy complicado. En general estos conceptos se enseñan como implementaciones independientes, esto causaba que no logre entenderlo.
+
+Me hubiese gustado que me digan que estos tres métodos son el reconocimiento, e implementación, la razón por la que iteramos un array frecuentemente cae en una de tres categorías funcionales.
+
+Al revisar código que escribí en el pasado, me di cuenta de que el 90% del tiempo, al recorrer cadenas o matrices hago una de las siguientes acciones: mapeo una secuencia de declaraciones a cada valor, filtro valores que cumplen un criterio específico o reducen el conjunto de datos a un solo valor agregado.
+
+Para practicar, agarré mi antiguo código y lo refactoricé usando estos métodos. Eso fue sumamente útil.
+
+Voy a explicar cada método y luego convertiremos las implementaciones comunes de “fors” a sus respectivos métodos.
+
+### Map
+
+El método .map() se usa cuando querés:
+
+  1. Realizar un conjunto de declaraciones con cada valor de la cadena.
+  2. Devolver el valor (presumiblemente) modificado.
+
+Usemos un ejemplo simple de calcular el valor de un producto con IVA a una variedad de precios.
+
+    const prices = [3.50, 45, 8.55, 21.99];
+    let newPrices = [];
+    for(let i=0; i < prices.length; i++) {  
+      newPrices.push(prices[i] * 1.21);
+    }
+
+Podemos lograr el mismo resultado usando .map():
+
+    const prices = [3.50, 45, 8.55, 21.99];
+    let newPrices = prices.map(price => price * 1.21);
+
+La sintaxis anterior está sintetizada, vamos a expandirla. El método .map() toma un callback, que se puede considerar como una función. Eso es lo que está entre paréntesis.
+
+La variable “price” es el nombre que se utilizará para identificar cada valor. Como solo hay una entrada, podemos omitir los paréntesis habituales alrededor de los parámetros.
+
+La declaración después de la flecha => es el cuerpo de nuestro callback. Dado que el cuerpo tiene solo una declaración, podemos omitir las llaves y la palabra clave return.
+
+En caso de que esto siga siendo confuso, escribámoslo completamente como referencia:
+
+    const prices = [3.50, 45, 8.55, 21.99];
+    let newPrices = prices.map((price) => {  
+      return price * 1.21;
+    });
+
+***
+
+### Filter
+
+El método .filter() se utiliza cuando queremos extraer un subconjunto de valores del iterable. Cuando utilices .filter(), acordate que estas filtrando valores. Esto significa que cada elemento en el iterable que se evalúa como verdadero se incluirá en el filtro.
+
+Usemos este método en un ejemplo de mantener solo enteros impares. Vamos a utilizar módulo para calcular el resto de la división por 2. Cuando ese resto es igual a 1, sabemos que el número fue impar.
+
+    const numbers = [1,2,3,4,5,6,7,8];
+    let odds = [];
+    for(let i=0; i < numbers.length; i++) {  
+      if(numbers[i] % 2 == 1) {     
+        odds.push(numbers[i]);  
+      }
+    }
+
+Parecido al método .map(), .filter() acepta un único parámetro de callback donde se pasará cada valor del iterable.
+
+    const numbers = [1,2,3,4,5,6,7,8];
+    let odds = numbers.filter(num => num % 2);
+
+Se aplican reglas similares para este callback. Como hay una sola entrada y el cuerpo de la función es una sola línea, podemos omitir los paréntesis de los parámetros, las llaves que definen el cuerpo y la palabra clave return.
+
+***
+
+### Reduce
+
+Finalmente, llegamos a .reduce(), que sin duda, es el más confuso de los tres métodos. El nombre del método se refiere a reducir varios valores a un solo valor. Sin embargo, descubrí que es más fácil pensar: que se está acumulando en lugar de reducir.
+
+El método funciona definiendo un punto de partida. A medida que el método itera sobre cada valor, ese punto de partida se modifica y se transmite.
+
+Este es un caso clásico de sumar una serie de números. Supongamos que estamos calculando las ventas totales de una empresa:
+
+    const sales = [200, 65, 19, 63, 90];
+    let total = 0;
+    for(let i=0; i < sales.length; i++) {  
+      total += sales[i];
+    }
+
+A diferencia de .map() y .filter(), el callback del método .reduce() requiere dos parámetros: un acumulador y el valor actual del iterable. El acumulador será el primer parámetro y es el valor “transmitido” en cada iteración.
+
+    const sales = [200, 65, 19, 63, 90];
+    let total = sales.reduce((total,sale) => {  
+      return total + sale;
+    });
+
+También podríamos pasar un segundo argumento al método .reduce(). Esto serviría como el valor inicial para el acumulador. Digamos que estamos agregando a las ventas de ayer que totalizaron en $600.
+
+    const sales = [200, 65, 19, 63, 90];
+    let total = sales.reduce((total,sale) => {  
+      return total + sale;
+    }, 600);
+
+¡Ahora podés dejar de tenerle miedo a estos métodos! Pensá en estos métodos para hacer tú código más legible. Estarás escribiendo código sintetizado, pero lo más importante, en realidad, es que en estarás describiendo la intención de tu bucle.
+
+Te resultará mucho más fácil leer tu código cuando lo mires en tres meses. En lugar de tener que leer las declaraciones dentro del ciclo for, solo para comprender su intención de alto nivel, podrás ver map / filter / reduce y tener una idea sobre lo que el bloque quiere lograr.
+
+***
+
+Muchas cosas de las que leíste en este artículo ya las sabés. La mayoría de este conocimiento que te compartí ya lo sabés. Sabemos lo que tenemos que hacer, sabemos lo que tenemos que evitar, todo esto ya lo sabemos. El único problema es que no lo ponemos en práctica, por esto es que necesito que te comprometas conmigo, en que si una de las ideas que mencioné resuena en vos, te interesa ponerla en práctica, que te comprometas a que vas a empezar hoy mismo con el paso más pequeño posible, el gesto más mínimo a hacerlo.
+
+Solo pensar en poner en práctica no sirve, tenés que ponerte en práctica para tu crecimiento exponencial.
+
+***
+
+Antes de que te vayas…
+
+¿Encontraste interesante el artículo? ¿Te gustaría que escriba sobre algún tema en particular?
+Escribime o contactame a través de [Medium](https://medium.com/@ktufernando) o [GitHub](https://github.com/ktufernando) o [LinkedIn](https://www.linkedin.com/in/fervaldes/).
