@@ -63,7 +63,7 @@ const IndexPage = ({
           Acá vas a encontrar artículos que seguro te ayudarán en tú desarrollo profesional como developer, arquitecto y lider.
         </p>
         <p>
-          Suelo dar worshops GRATIS de desarrollo, DevOps y AWS. Enviame whatsapp o mail si te gustaría participar.
+          Suelo dar workshops GRATIS de desarrollo, DevOps y AWS. Enviame whatsapp o mail si te gustaría participar.
         </p>
         <ul>
           <li>
