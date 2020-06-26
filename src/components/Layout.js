@@ -213,7 +213,7 @@ const Layout = ({ children, customSEO }) => {
         <GlobalStyle />
         {children}
         <Footer>
-          &copy; 2019 por Fernando Valdes. <br />
+          &copy; 2020 por Fernando Valdes. <br />
           <a href="https://github.com/ktufernando/ktufernando.github.io">Repositorio GitHub</a> <br />
           <span>Último build: {buildTime}</span>
         </Footer>

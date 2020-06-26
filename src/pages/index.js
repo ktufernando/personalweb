@@ -60,7 +60,7 @@ const IndexPage = ({
           Soy Fernando Valdes, desarrollador java y node desde hace 13 años. Hoy me contratan como consultor y arquitecto de soluciones.
         </p>
         <p>
-          Acá vas a encontrar artículos que seguro te ayudarán en tú desarrollo profesional como developer, arquitecto y lider.
+          Acá vas a encontrar artículos que seguro te van a ayudar en tú desarrollo profesional como developer, arquitecto y lider técnico.
         </p>
         <p>
           Suelo dar workshops GRATIS de desarrollo, DevOps y AWS. Enviame whatsapp o mail si te gustaría participar.
@@ -139,7 +139,7 @@ export const IndexQuery = graphql`
         }
         frontmatter {
           title
-          date(formatString: "MM/DD/YYYY")
+          date(formatString: "DD/MM/YYYY")
           categories
         }
         excerpt(pruneLength: 200)
